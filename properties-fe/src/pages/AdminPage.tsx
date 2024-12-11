@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { addCity, addNeghorhood, getAllCities } from '../http';
+import {
+  addCity,
+  addConstructionType,
+  addNeghorhood,
+  getAllCities,
+  addPropertyType,
+  addHetingType,
+} from '../http';
 import AddOptionOf from '../components/AddOptionOf';
-import { Option } from '../common/types';
+import { Option } from '@types';
 import AddSingleOption from '../components/AddSingleOption';
 
 const AdminPage = () => {
@@ -19,6 +26,12 @@ const AdminPage = () => {
 
   const [selectedCityId, setSelectedCityId] = useState<number | null>();
   const [neighborhoodValue, setNeighborhoodValue] = useState('');
+
+  const [constructionValue, setConstructionValue] = useState('');
+
+  const [propertyValue, setPropertyValue] = useState('');
+
+  const [heatingValue, setHeatingValue] = useState('');
 
   useEffect(() => {
     getAllCities().then((res) => {
@@ -41,22 +54,67 @@ const AdminPage = () => {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    console.log(name, value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   console.log(name, value);
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
 
   const handleSubmitCity = () => {
     addCity(cityName);
     setCityName('');
   };
 
+  const handleSubmitConstruction = () => {
+    console.log(constructionValue);
+    addConstructionType(constructionValue);
+    setConstructionValue('');
+  };
+
+  const handleSubmitPropertyType = () => {
+    console.log(propertyValue);
+    addPropertyType(propertyValue);
+    setPropertyValue('');
+  };
+
+  const handleSubmitHeadingType = () => {
+    console.log(heatingValue);
+    addHetingType(heatingValue);
+    setHeatingValue('');
+  };
+
   return (
     <>
+      <AddSingleOption
+        inputValue={constructionValue}
+        setValue={setConstructionValue}
+        minLength={2}
+        maxLength={100}
+        label="Въведи Вид Строителство"
+        submit={handleSubmitConstruction}
+      />
+
+      <AddSingleOption
+        inputValue={propertyValue}
+        setValue={setPropertyValue}
+        minLength={2}
+        maxLength={100}
+        label="Въведи Вид Имот"
+        submit={handleSubmitPropertyType}
+      />
+
+      <AddSingleOption
+        inputValue={heatingValue}
+        setValue={setHeatingValue}
+        minLength={2}
+        maxLength={100}
+        label="Въведи Вид Отопление"
+        submit={handleSubmitHeadingType}
+      />
+
       <AddSingleOption
         inputValue={cityName}
         setValue={setCityName}

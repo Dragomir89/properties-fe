@@ -3,7 +3,7 @@ import axios from 'axios';
 const tokenOfTheDay =
   'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzMzNDYyODgwLCJpc3MiOiJwcm9wZXJ0aWVzIHdlYiBhcGkiLCJhdWQiOiJCZXN0IFN0b3JlIENsaWVudHMifQ.v2pY6YdQvVgjAosBsMnbqcoGWIiCmxWNS6KlufFm5S51t8mVvqFNed4npRt-6HqS5X-xwiWxd5roAqTYNXxdkA';
 
-export const register = () => {
+export const register = (data: any, languages: number[]) => {
   console.log('register');
 
   const fetchData = async () => {
@@ -12,25 +12,28 @@ export const register = () => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     };
-    const body = {
-      firstName: 'Dragomir',
-      lastName: 'Mildov',
-      email: 'drashoo@abv.bg',
-      phone: '0889358720',
-      address: 'Lozenec Cvetna Gradina 71a',
-      password: 'testpass',
-    };
 
+    data.languagesIds = languages;
+    console.log('send data ', data);
     const response = await fetch('http://localhost:5117/api/Account/register', {
       method,
       headers,
-      body: JSON.stringify(body),
+      body: JSON.stringify(data),
     });
     const jsonData = await response.json();
     console.log(jsonData);
   };
 
   fetchData();
+};
+
+export const getLanguages = async () => {
+  const res = await axios({
+    method: 'get',
+    url: 'http://localhost:5117/api/Account/languages',
+    // headers,
+  });
+  return res.data;
 };
 
 export const login = async () => {
@@ -217,6 +220,54 @@ export const getAllCities = async () => {
   const res = await axios({
     method: 'get',
     url: 'http://localhost:5117/api/Admin/all-cities',
+    headers,
+  });
+  return res.data;
+};
+
+export const addConstructionType = async (name: string) => {
+  const headers = {
+    Authorization: 'Bearer ' + tokenOfTheDay,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const data = { name };
+  const res = await axios({
+    method: 'post',
+    url: 'http://localhost:5117/api/Admin/add-construction-type',
+    data,
+    headers,
+  });
+  return res.data;
+};
+
+export const addPropertyType = async (name: string) => {
+  const headers = {
+    Authorization: 'Bearer ' + tokenOfTheDay,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const data = { name };
+  const res = await axios({
+    method: 'post',
+    url: 'http://localhost:5117/api/Admin/add-property-type',
+    data,
+    headers,
+  });
+  return res.data;
+};
+
+export const addHetingType = async (name: string) => {
+  const headers = {
+    Authorization: 'Bearer ' + tokenOfTheDay,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const data = { name };
+  const res = await axios({
+    method: 'post',
+    url: 'http://localhost:5117/api/Admin/add-heating-type',
+    data,
     headers,
   });
   return res.data;

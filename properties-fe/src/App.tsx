@@ -1,14 +1,9 @@
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import {
-  login,
-  register,
-  testClaims,
-  forgotPassword,
-  resetPassword,
-} from './http';
+import { login, testClaims, forgotPassword, resetPassword } from './http';
 import { TestLink } from './components/TestLink';
 import { Button } from '@mui/material';
 
@@ -40,12 +35,6 @@ function App() {
         </RouterLink>
       </Button>
       <div className="card">
-        <TestLink
-          method={METODS.POST}
-          clickFn={register}
-          btnMsg={'Register User'}
-          url="/api/Account/register"
-        />
         <TestLink
           method={METODS.POST}
           clickFn={login}

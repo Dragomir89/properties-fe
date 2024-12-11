@@ -47,7 +47,11 @@ const AddSingleOption: React.FC<MyFormProps> = ({
         />
       </form>
 
-      <Button variant="contained" color="primary" onClick={submit}>
+      <Button
+        style={{ marginBottom: '16px' }}
+        variant="contained"
+        color="primary"
+        onClick={submit}>
         Добави
       </Button>
     </>
