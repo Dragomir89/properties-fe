@@ -9,12 +9,14 @@ import {
   Grid2,
   InputLabel,
   MenuItem,
+  OutlinedInput,
   Select,
   Stack,
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { RegistrationFormValues } from '@types';
+import '../css/select.css';
 
 interface RegistrationFormProps {
   handleSubmitRegister: (param: RegistrationFormValues) => void;
@@ -29,8 +31,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
     firstName: 'Иван',
     lastName: 'Петров',
     email: 'test@test.com',
-    password: 'test',
-    confurmPassword: 'test',
+    password: 'testtest1',
+    confurmPassword: 'testtest1',
     gender: 'Мъж',
     phoneNumber: '0889358720',
     languages: ['Български'],
@@ -127,7 +129,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
               render={({ field }) => (
                 <FormControl fullWidth error={!!errors.gender}>
                   <InputLabel id="country-label">Пол</InputLabel>
-                  <Select {...field} labelId="country-label" label="Country">
+                  <Select
+                    className="genderSelect"
+                    {...field}
+                    labelId="country-label"
+                    label="Country">
                     <MenuItem value="Мъж">Мъж</MenuItem>
                     <MenuItem value="Жена">Жена</MenuItem>
                     <MenuItem value="Друг">Друг</MenuItem>
@@ -190,9 +196,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
                 <FormControl fullWidth error={!!errors.languages}>
                   <InputLabel id="languages-label">Говорим Език</InputLabel>
                   <Select
+                    className="languageSelect"
+                    sx={{
+                      height: 56,
+                    }}
                     {...field}
                     labelId="languages-label"
                     multiple
+                    input={<OutlinedInput id="select-language" label="Chip" />}
                     renderValue={(selected) => (
                       <Box
                         sx={{
@@ -221,7 +232,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
         </Grid2>
       </Stack>
       <Stack style={{ padding: '10px' }}>
-        <Button style={{ width: '200px' }} variant="contained">
+        <Button type="submit" style={{ width: '200px' }} variant="contained">
           Регистрация
         </Button>
       </Stack>

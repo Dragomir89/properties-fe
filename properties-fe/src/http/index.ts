@@ -3,7 +3,7 @@ import axios from 'axios';
 const tokenOfTheDay =
   'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzMzNDYyODgwLCJpc3MiOiJwcm9wZXJ0aWVzIHdlYiBhcGkiLCJhdWQiOiJCZXN0IFN0b3JlIENsaWVudHMifQ.v2pY6YdQvVgjAosBsMnbqcoGWIiCmxWNS6KlufFm5S51t8mVvqFNed4npRt-6HqS5X-xwiWxd5roAqTYNXxdkA';
 
-export const register = (data: any, languages: number[]) => {
+export const register = (data: any) => {
   console.log('register');
 
   const fetchData = async () => {
@@ -13,7 +13,7 @@ export const register = (data: any, languages: number[]) => {
       'Content-Type': 'application/json',
     };
 
-    data.languagesIds = languages;
+    data.languagesIds = data.languages;
     console.log('send data ', data);
     const response = await fetch('http://localhost:5117/api/Account/register', {
       method,

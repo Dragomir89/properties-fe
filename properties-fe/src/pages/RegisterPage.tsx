@@ -4,12 +4,13 @@ import { prepareRegistrationData } from 'src/common/helpers';
 import useLanguages from 'src/hooks/useLanguages';
 import { RegistrationFormValues } from '@types';
 import RegistrationForm from '@components/forms/RegistrationForm';
+import { register } from '@http';
 
 const UserRegistrationForm = ({}) => {
   const [languagesData, loadingLanguages] = useLanguages();
 
   const handleSubmitRegister = (data: RegistrationFormValues) => {
-    console.log(prepareRegistrationData(data, languagesData));
+    register(prepareRegistrationData(data, languagesData));
   };
 
   return (
