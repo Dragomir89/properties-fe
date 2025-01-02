@@ -1,3 +1,5 @@
+import { MenuItem } from '@mui/material';
+import React from 'react';
 import { LanguageOption, RegistrationFormValues } from 'src/common/types';
 
 export const getLangiageIds = (selectedLanguages, languages): number[] => {
@@ -25,4 +27,16 @@ export const prepareRegistrationData = (
   };
 
   return reqData;
+};
+
+const createOptions = (n: { id: number; name: string }) => (
+  <MenuItem key={n.name + n.id} value={n.id}>
+    {n.name}
+  </MenuItem>
+);
+
+export const createOptionsFor = (
+  array: Array<{ id: number; name: string }>
+) => {
+  return array.map(createOptions);
 };

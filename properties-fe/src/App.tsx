@@ -23,6 +23,12 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+
+      <Button variant="contained">
+        <RouterLink to={'/add-property'}>
+          <span style={{ color: 'white' }}>Add Property Page</span>
+        </RouterLink>
+      </Button>
       <Button variant="contained">
         <RouterLink to={'/register'}>
           <span style={{ color: 'white' }}>Register Page</span>

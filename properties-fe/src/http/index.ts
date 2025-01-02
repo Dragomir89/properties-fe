@@ -272,3 +272,32 @@ export const addHetingType = async (name: string) => {
   });
   return res.data;
 };
+
+export const getProprtyMenusOptions = async () => {
+  // const headers = {
+  //   Authorization: 'Bearer ' + tokenOfTheDay,
+  // };
+
+  const res = await axios({
+    method: 'get',
+    url: 'http://localhost:5117/api/Property/property-menus-oiptions',
+    // headers,
+  });
+  return res.data;
+};
+
+export const addProprery = async (property: any) => {
+  const headers = {
+    // Authorization: 'Bearer ' + tokenOfTheDay,
+    Accept: 'application/json; charset=utf-8',
+    'Content-Type': 'application/json; charset=utf-8',
+  };
+
+  const res = await axios({
+    method: 'post',
+    url: 'http://localhost:5117/api/Property/add-property',
+    data: property,
+    headers,
+  });
+  return res.data;
+};
