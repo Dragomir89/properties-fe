@@ -5,3 +5,7 @@
 .languageSelect legend {
   font-size: 2.5rem !important;
 }
+
+.login-form-wrapper {
+  max-width: 500px;
+}

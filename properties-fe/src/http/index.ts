@@ -1,75 +1,17 @@
 import axios from 'axios';
+import httpInstance from 'src/http/HttpInstance';
 
 const tokenOfTheDay =
   'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzMzNDYyODgwLCJpc3MiOiJwcm9wZXJ0aWVzIHdlYiBhcGkiLCJhdWQiOiJCZXN0IFN0b3JlIENsaWVudHMifQ.v2pY6YdQvVgjAosBsMnbqcoGWIiCmxWNS6KlufFm5S51t8mVvqFNed4npRt-6HqS5X-xwiWxd5roAqTYNXxdkA';
 
-export const register = (data: any) => {
-  console.log('register');
-
-  const fetchData = async () => {
-    const method = 'POST';
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    };
-
-    data.languagesIds = data.languages;
-    console.log('send data ', data);
-    const response = await fetch('http://localhost:5117/api/Account/register', {
-      method,
-      headers,
-      body: JSON.stringify(data),
-    });
-    const jsonData = await response.json();
-    console.log(jsonData);
-  };
-
-  fetchData();
-};
-
 export const getLanguages = async () => {
-  const res = await axios({
-    method: 'get',
-    url: 'http://localhost:5117/api/Account/languages',
-    // headers,
-  });
+  const res = await httpInstance.get('Account/languages');
   return res.data;
 };
 
-export const login = async () => {
-  console.log('login');
-  const method = 'POST';
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
-  const body = {
-    email: 'drashoo@abv.bg',
-    password: 'testpass',
-  };
-
-  const response = await fetch('http://localhost:5117/api/Account/login', {
-    method,
-    headers,
-    body: JSON.stringify(body),
-  });
-  const jsonData = await response.json();
-  console.log(jsonData);
-};
-
 export const testProtectedUrl = async () => {
-  console.log('protected');
-
-  const URL = 'http://localhost:5117/api/Account/test-protected-url';
-  const method = 'GET';
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-  };
-
-  const response = await fetch(URL, { method, headers });
-
-  const jsonData = await response.json();
-  console.log(jsonData);
+  const res = await httpInstance.get('Account/test-protected-url');
+  console.log(res.data);
 };
 
 export const testClaims = async () => {
@@ -177,127 +119,57 @@ export const uploadImageAxios = async (formData: FormData) => {
 };
 
 export const addCity = async (city: string) => {
-  console.log('addCity');
-  const method = 'POST';
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
-  const body = {
-    name: city,
-  };
-
-  const response = await fetch('http://localhost:5117/api/Admin/add-city', {
-    method,
-    headers,
-    body: JSON.stringify(body),
-  });
-  const jsonData = await response.json();
-  console.log(jsonData);
+  const body = { name: city };
+  const res = await httpInstance.post('Admin/add-city', body);
+  return res.data;
 };
 
 export const addNeghorhood = async (name: string, parentId: number) => {
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
   const data = { name, parentId };
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:5117/api/Admin/add-neighborhood',
-    data,
-    headers,
-  });
+  const res = await httpInstance.post('Admin/add-construction-type', data);
   return res.data;
 };
 
 export const getAllCities = async () => {
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-  };
-
-  const res = await axios({
-    method: 'get',
-    url: 'http://localhost:5117/api/Admin/all-cities',
-    headers,
-  });
+  const res = await httpInstance.get('Admin/all-cities');
   return res.data;
 };
 
 export const addConstructionType = async (name: string) => {
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
   const data = { name };
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:5117/api/Admin/add-construction-type',
-    data,
-    headers,
-  });
+  const res = await httpInstance.post('Admin/add-construction-type', data);
   return res.data;
 };
 
 export const addPropertyType = async (name: string) => {
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
   const data = { name };
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:5117/api/Admin/add-property-type',
-    data,
-    headers,
-  });
+  const res = await httpInstance.post('Admin/add-property-type', data);
   return res.data;
 };
 
 export const addHetingType = async (name: string) => {
-  const headers = {
-    Authorization: 'Bearer ' + tokenOfTheDay,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
   const data = { name };
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:5117/api/Admin/add-heating-type',
-    data,
-    headers,
-  });
+  const res = await httpInstance.post('Admin/add-heating-type', data);
   return res.data;
 };
 
 export const getProprtyMenusOptions = async () => {
-  // const headers = {
-  //   Authorization: 'Bearer ' + tokenOfTheDay,
-  // };
-
-  const res = await axios({
-    method: 'get',
-    url: 'http://localhost:5117/api/Property/property-menus-oiptions',
-    // headers,
-  });
+  const res = await httpInstance.get('Property/property-menus-oiptions');
   return res.data;
 };
 
 export const addProprery = async (property: any) => {
-  const headers = {
-    // Authorization: 'Bearer ' + tokenOfTheDay,
-    Accept: 'application/json; charset=utf-8',
-    'Content-Type': 'application/json; charset=utf-8',
-  };
-
-  const res = await axios({
-    method: 'post',
-    url: 'http://localhost:5117/api/Property/add-property',
-    data: property,
-    headers,
-  });
+  const res = await httpInstance.post('Property/add-property', property);
   return res.data;
+};
+
+export const login = async (body) => {
+  const res = await httpInstance.post('Account/login', body);
+  localStorage.setItem('token', res.data.token);
+  return res.data;
+};
+
+export const register = async (data: any) => {
+  data.languagesIds = data.languages;
+  return await httpInstance.post('Account/register', data);
 };

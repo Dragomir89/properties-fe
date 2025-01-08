@@ -49,3 +49,8 @@ export interface AddPropertyFormValues {
   furnitureLevel: string;
   description: string;
 }
+
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}

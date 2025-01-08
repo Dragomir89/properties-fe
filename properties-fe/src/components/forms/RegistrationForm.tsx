@@ -30,7 +30,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   const defaultValues: RegistrationFormValues = {
     firstName: 'Иван',
     lastName: 'Петров',
-    email: 'test@test.com',
+    email: 'drashoo@abv.bg',
     password: 'testtest1',
     confurmPassword: 'testtest1',
     gender: 'Мъж',

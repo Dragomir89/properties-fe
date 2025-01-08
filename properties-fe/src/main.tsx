@@ -7,12 +7,14 @@ import App from './App';
 import UserRegistrationForm from './pages/RegisterPage';
 import AdminPage from 'src/pages/AdminPage';
 import AddPropertyPage from 'src/pages/AddPropertyPage';
+import LoginPage from 'src/pages/LoginPage';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<UserRegistrationForm />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/add-property" element={<AddPropertyPage />} />

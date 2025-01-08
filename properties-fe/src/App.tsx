@@ -3,7 +3,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import { login, testClaims, forgotPassword, resetPassword } from './http';
+import {
+  login,
+  testClaims,
+  forgotPassword,
+  resetPassword,
+  testProtectedUrl,
+} from './http';
 import { TestLink } from './components/TestLink';
 import { Button } from '@mui/material';
 
@@ -29,18 +35,30 @@ function App() {
           <span style={{ color: 'white' }}>Add Property Page</span>
         </RouterLink>
       </Button>
+      <hr />
+      <Button variant="contained">
+        <RouterLink to={'/login'}>
+          <span style={{ color: 'white' }}>Login Page</span>
+        </RouterLink>
+      </Button>
       <Button variant="contained">
         <RouterLink to={'/register'}>
           <span style={{ color: 'white' }}>Register Page</span>
         </RouterLink>
       </Button>
-
+      <hr />
       <Button variant="contained">
         <RouterLink to={'/admin'}>
           <span style={{ color: 'white' }}>Admin Page</span>
         </RouterLink>
       </Button>
       <div className="card">
+        <TestLink
+          method={METODS.POST}
+          clickFn={testProtectedUrl}
+          btnMsg="TEST PROTECTED"
+          url="/api/Account/protected-url"
+        />
         <TestLink
           method={METODS.POST}
           clickFn={login}
