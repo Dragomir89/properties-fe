@@ -1,0 +1,5 @@
+export interface ResetPasswordFormValues {
+  newPassword: string;
+  confirmPassword: string;
+  token: string;
+} 

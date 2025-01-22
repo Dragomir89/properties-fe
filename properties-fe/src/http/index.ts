@@ -29,54 +29,6 @@ export const testClaims = async () => {
   console.log(jsonData);
 };
 
-export const forgotPassword = async () => {
-  console.log('forgotPassword');
-  const method = 'POST';
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
-  const body = {
-    email: 'lubo@abv.bg',
-  };
-
-  const response = await fetch(
-    'http://localhost:5117/api/Account/forgot-password',
-    {
-      method,
-      headers,
-      body: JSON.stringify(body),
-    }
-  );
-  const jsonData = await response.json();
-  console.log(jsonData);
-};
-
-export const resetPassword = async () => {
-  console.log('reset Password');
-  const method = 'POST';
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
-  const body = {
-    password: 'testnewpass',
-    // get the token from email
-    token:
-      '6a5a7585-5e3b-4b87-b6b7-b97e72328690-ea6bbb11-a593-48c6-8752-dee1506f5a8a',
-  };
-
-  const response = await fetch(
-    'http://localhost:5117/api/Account/reset-password',
-    {
-      method,
-      headers,
-      body: JSON.stringify(body),
-    }
-  );
-  const jsonData = await response.json();
-  console.log(jsonData);
-};
 
 export const uploadUmage = async (formData: FormData) => {
   const headers = {
@@ -173,3 +125,11 @@ export const register = async (data: any) => {
   data.languagesIds = data.languages;
   return await httpInstance.post('Account/register', data);
 };
+
+export const forgotPassword = async (data: { email: string }) => {
+  return await httpInstance.post('Account/forgot-password', data);
+}
+
+export const resetPassword = async (data: { password: string; token: string }) => {
+  return await httpInstance.post('Account/reset-password', data);
+}

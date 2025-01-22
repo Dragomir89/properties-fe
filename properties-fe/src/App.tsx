@@ -71,19 +71,6 @@ function App() {
           btnMsg="test climesd url"
           url="/api/Account/get-token-claims"
         />
-        <TestLink
-          method={METODS.POST}
-          clickFn={forgotPassword}
-          btnMsg="Forgot Password"
-          url="/api/Account/forgot-password"
-        />
-
-        <TestLink
-          method={METODS.POST}
-          clickFn={resetPassword}
-          btnMsg="Reset Password"
-          url="/api/Account/reset-password"
-        />
       </div>
     </>
   );

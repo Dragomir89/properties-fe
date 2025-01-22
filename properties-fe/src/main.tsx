@@ -8,6 +8,7 @@ import UserRegistrationForm from './pages/RegisterPage';
 import AdminPage from 'src/pages/AdminPage';
 import AddPropertyPage from 'src/pages/AddPropertyPage';
 import LoginPage from 'src/pages/LoginPage';
+import ForgotPasswordPage from 'src/pages/ForgotPasswordPage';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,6 +19,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/register" element={<UserRegistrationForm />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/add-property" element={<AddPropertyPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
       </Routes>
     </Router>
   </StrictMode>
